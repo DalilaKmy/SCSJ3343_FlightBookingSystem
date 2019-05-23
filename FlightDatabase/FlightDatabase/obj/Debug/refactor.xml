@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0">
+  <Operation Name="Rename Refactor" Key="68d1e5cd-40f8-47f1-8c62-a48bf18aa5fa" ChangeDateTime="05/22/2019 14:24:42" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Customer].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Customer]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="customerID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="637f5d64-5f9c-46ea-8ef0-6b30d9c65ab3" ChangeDateTime="05/22/2019 14:25:55" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Admin].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Admin]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="adminID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1049d3e0-a176-4ff0-9b9d-1d10964556a8" ChangeDateTime="05/22/2019 14:29:00" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Flight].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Flight]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="flightID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3b99fd04-1281-4d65-bdab-ac012c7b6198" ChangeDateTime="05/22/2019 14:32:37" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[FlightBooking].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[FlightBooking]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="bookingID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a57bb078-7a52-4fa9-bc1e-2095888e9057" ChangeDateTime="05/22/2019 14:34:15" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Payment].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Payment]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="paymentID" />
+  </Operation>
+</Operations>

@@ -1,0 +1,10 @@
+C:\Users\OK\source\repos\FlightDatabase\FlightDatabase\bin\Debug\FlightDatabase.dacpac
+C:\Users\OK\source\repos\FlightDatabase\FlightDatabase\bin\Debug\FlightDatabase.dll
+C:\Users\OK\source\repos\FlightDatabase\FlightDatabase\bin\Debug\FlightDatabase.pdb
+C:\Users\OK\source\repos\FlightDatabase\FlightDatabase\obj\Debug\FlightDatabase.sqlprojAssemblyReference.cache
+C:\Users\OK\source\repos\FlightDatabase\FlightDatabase\obj\Debug\Model.xml
+C:\Users\OK\source\repos\FlightDatabase\FlightDatabase\obj\Debug\refactor.xml
+C:\Users\OK\source\repos\FlightDatabase\FlightDatabase\obj\Debug\postdeploy.sql
+C:\Users\OK\source\repos\FlightDatabase\FlightDatabase\obj\Debug\predeploy.sql
+C:\Users\OK\source\repos\FlightDatabase\FlightDatabase\obj\Debug\FlightDatabase.dll
+C:\Users\OK\source\repos\FlightDatabase\FlightDatabase\obj\Debug\FlightDatabase.pdb

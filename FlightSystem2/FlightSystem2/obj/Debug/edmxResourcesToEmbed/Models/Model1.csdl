@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FlightDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__RefactorLog">
+    <Key>
+      <PropertyRef Name="OperationKey" />
+    </Key>
+    <Property Name="OperationKey" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="adminID" />
+    </Key>
+    <Property Name="adminID" Type="Int32" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="customerID" />
+    </Key>
+    <Property Name="customerID" Type="Int32" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="hpno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="FlightBookings" Relationship="Self.FK_dbo_FlightBooking_dbo_Customer_customerID" FromRole="Customer" ToRole="FlightBooking" />
+  </EntityType>
+  <EntityType Name="Flight">
+    <Key>
+      <PropertyRef Name="flightID" />
+    </Key>
+    <Property Name="flightID" Type="Int32" Nullable="false" />
+    <Property Name="flightName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="destinationFrom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="destinationTo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="flightDate" Type="DateTime" Precision="3" />
+    <Property Name="flightSeat" Type="Int32" />
+    <Property Name="statusAvailability" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="firstClass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="secondClass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="thirdClass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="FlightBookings" Relationship="Self.FK_dbo_FlightBooking_dbo_Flight_flightID" FromRole="Flight" ToRole="FlightBooking" />
+    <Property Name="price" Type="Double" />
+  </EntityType>
+  <EntityType Name="FlightBooking">
+    <Key>
+      <PropertyRef Name="bookingID" />
+    </Key>
+    <Property Name="bookingID" Type="Int32" Nullable="false" />
+    <Property Name="customerID" Type="Int32" />
+    <Property Name="flightID" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_dbo_FlightBooking_dbo_Customer_customerID" FromRole="FlightBooking" ToRole="Customer" />
+    <NavigationProperty Name="Flight" Relationship="Self.FK_dbo_FlightBooking_dbo_Flight_flightID" FromRole="FlightBooking" ToRole="Flight" />
+    <NavigationProperty Name="Payments" Relationship="Self.FK_dbo_Payment_dbo_FlightBooking_bookingID" FromRole="FlightBooking" ToRole="Payment" />
+    <Property Name="price" Type="Double" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="paymentID" />
+    </Key>
+    <Property Name="paymentID" Type="Int32" Nullable="false" />
+    <Property Name="paymentStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="bookingID" Type="Int32" />
+    <NavigationProperty Name="FlightBooking" Relationship="Self.FK_dbo_Payment_dbo_FlightBooking_bookingID" FromRole="Payment" ToRole="FlightBooking" />
+  </EntityType>
+  <Association Name="FK_dbo_FlightBooking_dbo_Customer_customerID">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="FlightBooking" Type="Self.FlightBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="customerID" />
+      </Principal>
+      <Dependent Role="FlightBooking">
+        <PropertyRef Name="customerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_FlightBooking_dbo_Flight_flightID">
+    <End Role="Flight" Type="Self.Flight" Multiplicity="0..1" />
+    <End Role="FlightBooking" Type="Self.FlightBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flight">
+        <PropertyRef Name="flightID" />
+      </Principal>
+      <Dependent Role="FlightBooking">
+        <PropertyRef Name="flightID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Payment_dbo_FlightBooking_bookingID">
+    <End Role="FlightBooking" Type="Self.FlightBooking" Multiplicity="0..1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FlightBooking">
+        <PropertyRef Name="bookingID" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="bookingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FlightDatabaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Flights" EntityType="Self.Flight" />
+    <EntitySet Name="FlightBookings" EntityType="Self.FlightBooking" />
+    <EntitySet Name="Payments" EntityType="Self.Payment" />
+    <AssociationSet Name="FK_dbo_FlightBooking_dbo_Customer_customerID" Association="Self.FK_dbo_FlightBooking_dbo_Customer_customerID">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="FlightBooking" EntitySet="FlightBookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_FlightBooking_dbo_Flight_flightID" Association="Self.FK_dbo_FlightBooking_dbo_Flight_flightID">
+      <End Role="Flight" EntitySet="Flights" />
+      <End Role="FlightBooking" EntitySet="FlightBookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Payment_dbo_FlightBooking_bookingID" Association="Self.FK_dbo_Payment_dbo_FlightBooking_bookingID">
+      <End Role="FlightBooking" EntitySet="FlightBookings" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
